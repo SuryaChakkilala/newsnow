@@ -1,0 +1,25 @@
+{% extends 'pages/main.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">NewsNow</h1>
+        <p class="lead text-muted">Get to know the latest updates in seconds...<br /></p>
+        <p>
+          {% if not user.is_authenticated %}
+            You are currently not logged in.<br />
+            <a href="#" class="btn btn-primary my-2">Login</a>
+            <a href="#" class="btn btn-secondary my-2">Register</a>
+          {% else %}
+            View the articles<br />
+            <a href="{% url 'breaking' %}" class="btn btn-primary my-2">Breaking News</a>
+            <a href="{% url 'articles' %}" class="btn btn-secondary my-2">View all articles</a>
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </section>
+{% endblock %}

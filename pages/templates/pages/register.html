@@ -1,0 +1,58 @@
+{% extends 'pages/main.html' %}
+
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <div class="wrapper p-5">
+        <div class="title">
+          <h1>Registration </h1>
+        </div>
+        <hr>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form">
+                <div class="inputfield">
+                    {{form.username}}
+                </div> <br />
+                <div class="inputfield">
+                    {{form.first_name}}
+                </div> <br />
+                <div class="inputfield">
+                    {{form.last_name}}
+                </div>  <br />
+                <div class="inputfield">
+                    {{form.email}}
+                </div> <br />
+                
+                <div class="inputfield">
+                    {{form.password1}}
+                </div>  <br />
+                <div class="inputfield">
+                    {{form.password2}}
+                </div> <br />
+                <div class="title">
+                    <button class="btn btn-primary btn-btn-lg" type="submit">Register Now</button>
+                    {{form.errors}}
+                </div><br />
+                <div class="inputfield">
+                    <h5>Already registered?&nbsp;<a href="{% url 'login' %}">Login now</a></h5>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+    var form_fields = document.getElementsByTagName('input')
+        form_fields[2].placeholder='First Name..';
+        form_fields[3].placeholder='Last Name..';
+        form_fields[1].placeholder='Username...';
+        form_fields[4].placeholder='Email Address...';
+        form_fields[5].placeholder='Password...';
+        form_fields[6].placeholder='Confirm Password...';
+
+        for (var field in form_fields){	
+        form_fields[field].className += ' form-control'
+        }
+    </script>
+{% endblock %}

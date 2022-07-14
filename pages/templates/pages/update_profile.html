@@ -1,0 +1,54 @@
+{% extends 'pages/main.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        input {
+            border-width: 1px;
+            border-radius: 5px;
+            margin: 5px;
+            width: 500px;
+            padding: 5px;
+        }
+    </style>
+    <div class="my-5 jumbotron jumbotron-fluid">
+        <div class="container">
+            <a class="btn btn-success" href="{% url 'profile' %}">&larr;&nbsp;Go back</a><br /><br />
+          <h1 class="display-4">Update your profile</h1>
+          <p class="lead">You can change your details from the below fields.</p>
+        </div>
+        <div style="margin-left: 13rem">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                {{form.username}}
+              </div>
+              <div class="form-group col-md-6">
+                {{form.email}}
+              </div>
+            </div>
+            <div class="form-group">
+              {{form.first_name}}
+            </div>
+            <div class="form-group">
+              {{form.last_name}}
+            </div><br>
+            <button type="submit" class="btn btn-primary">Update</button><br>
+            {{form.errors}}<br>
+        </form>
+        {% for message in messages  %}
+            <p class="lead" id='messages'>{{message}}</p>
+        {% endfor %}
+        </div>
+    </div>
+    <script>
+
+        //Query All input fields
+        var form_fields = document.getElementsByTagName('input')
+        form_fields[2].placeholder='Username..';
+        form_fields[3].placeholder='Email..';
+        form_fields[4].placeholder='First Name...';
+        form_fields[5].placeholder='Last Name...';
+        </script>
+{% endblock  %}
